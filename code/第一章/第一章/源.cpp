@@ -35,8 +35,8 @@ void print_array(int *A)
 void main()
 {
 	int A[10] = { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
-	// insert_sort_version1(A);
-	/*print_array(A);*/
-	cout << sizeof(A) / sizeof(int) << endl;
+	insert_sort_version1(A);
+	print_array(A);
+	/*cout << sizeof(A) / sizeof(int) << endl;*/
 	system("pause");
 }
