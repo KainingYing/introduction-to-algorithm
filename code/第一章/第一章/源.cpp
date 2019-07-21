@@ -1,15 +1,18 @@
 #include <iostream>
 using namespace std;
 
-void insert_sort_version1(int *A)
+void insert_sort_version1(int *A,int n)
 {
+	/*
+	第一版本，就是简单实现了p10的伪代码
+	*/
 	/*
 	A是数组A，n为数组的长度
 	可以用sizeof()来求出数组的长度，内存空间
+	但是作为参数不能获得,传入的参数是一个地址，函数无法判断他的长度
 	*/
-	int length = sizeof(A)/sizeof(int);
 	int key;
-	for (int i = 1; i < length; i++)
+	for (int i = 1; i < n; i++)
 	{
 		int j = i - 1;
 		key = A[i];
@@ -21,11 +24,21 @@ void insert_sort_version1(int *A)
 		A[j + 1] = key;
 	}
 }
-
-void print_array(int *A)
+int linear_search(int *A, int v,int n)
 {
-	int length = sizeof(A) / sizeof(int);
-	for (int i = 0; i < length; i++)
+	int NIL = 500;
+	for (int i = 0; i < n; i++)
+	{
+		if (A[i] == v)
+		{
+			return i;
+		}
+	}
+	return NIL;
+}
+void print_array(int *A,int n)
+{
+	for (int i = 0; i < n; i++)
 	{
 		cout << A[i] << " ";
 	}
@@ -34,9 +47,13 @@ void print_array(int *A)
 
 void main()
 {
-	int A[10] = { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
-	insert_sort_version1(A);
-	print_array(A);
-	/*cout << sizeof(A) / sizeof(int) << endl;*/
+	/*//测试插入排序
+	int a[10] = { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
+	int n = 10;
+	insert_sort_version1(a,n);
+	print_array(a,n);
+	system("pause");*/
+	int a[10] = { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
+	cout << linear_search(a, 6, 10)<<endl;
 	system("pause");
 }
