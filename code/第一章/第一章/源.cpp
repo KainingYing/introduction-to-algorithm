@@ -80,7 +80,7 @@ void selection_sort(int *a, int n)
 		a[index] = temp;
 	}
 }
-void merge(int *a, int p, int q, int r)
+void merge_version1(int *a, int p, int q, int r)
 {
 	/*
 	用了一张哨兵牌，用于简化代码，快不快不一定
@@ -113,6 +113,65 @@ void merge(int *a, int p, int q, int r)
 			r1++;
 		}
 	}
+	delete[] L;
+	delete[] R;
+}
+void merge_version2(int *a, int p, int q, int r)
+{
+	/*没有哨兵*/
+	int n1 = q - p + 1;
+	int n2 = r - q;
+	int *L = new int[n1];
+	int *R = new int[n2];
+	for (int i = 0; i < n1; i++)
+	{
+		L[i] = a[i + p];
+	}
+	for (int i = 0; i < n2; i++)
+	{
+		R[i] = a[i + q + 1];
+	}
+	int l = 0, r1 = 0;
+	int i;
+	for (i = 0; i < r - p + 1; i++)
+	{
+		if (l == n1 || r1 == n2)
+		{
+			break;
+		}
+		else 
+		{
+			if (L[l] <= R[r1])
+			{
+				a[i + p] = L[l];
+				l++;
+			}
+			else
+			{
+				a[i + p] = R[r1];
+				r1++;
+			}
+		}
+	}
+	if (l == n1 )
+	{
+		for (; i < r-p+1; i++)
+		{
+			a[i + p] = R[r1];
+			r1++;
+		}
+	}
+	else
+	{
+		for (; i < r - p + 1; i++)
+		{
+			a[i + p] = L[l];
+			l++;
+		}
+	}
+	delete[] L;
+	delete[] R;
+
 }
 void merge_sort(int *a, int p, int q)
 {
@@ -122,7 +181,7 @@ void merge_sort(int *a, int p, int q)
 		int mid = (p + q) / 2;
 		merge_sort(a, p, mid);
 		merge_sort(a, mid + 1, q);
-		merge(a, p, mid, q);
+		merge_version2(a, p, mid, q);
 	}
 }
 void main()
