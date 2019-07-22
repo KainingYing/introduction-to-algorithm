@@ -26,6 +26,7 @@ void insert_sort_version1(int *A,int n)
 }
 int linear_search(int *A, int v,int n)
 {
+	/*线性查找*/
 	int NIL = 500;
 	for (int i = 0; i < n; i++)
 	{
@@ -44,7 +45,40 @@ void print_array(int *A,int n)
 	}
 	cout << endl;
 }
-
+void binary_add(int *a, int *b,int *c, int n)
+{
+	/*
+	第一次想错了，把下标为0的情况想成了最低位，实则这是最高位。
+	*/
+	int carry = 0;
+	for (int i = n-1; i >=0; i--)
+	{
+		c[i+1] = (a[i] + b[i] + carry)%2;
+		carry = (a[i] + b[i] + carry) / 2;
+	}
+	c[0] = carry;
+}
+void selection_sort(int *a, int n)
+{
+	int min,index;
+	
+	for (int i = 0; i < n-1; i++)
+	{
+		min = a[i];
+		index = i;
+		for (int j = i + 1; j < n; j++)
+		{
+			if (a[j] < min)
+			{
+				min = a[j];
+				index = j;
+			}
+		}
+		int temp = a[i];
+		a[i] = a[index];
+		a[index] = temp;
+	}
+}
 void main()
 {
 	/*//测试插入排序
@@ -53,7 +87,13 @@ void main()
 	insert_sort_version1(a,n);
 	print_array(a,n);
 	system("pause");*/
+	/*//线性查找
 	int a[10] = { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
 	cout << linear_search(a, 6, 10)<<endl;
+	system("pause");*/
+	// 选择排序
+	int a[10] = { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
+	selection_sort(a, 10);
+	print_array(a, 10);
 	system("pause");
 }
