@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "第七章 快速排序", "第七章 快速排序\第七章 快速排序.vcxproj", "{35E7F25B-07D1-4EDD-A230-9029ECBEBF04}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{35E7F25B-07D1-4EDD-A230-9029ECBEBF04}.Debug|x64.ActiveCfg = Debug|x64
+		{35E7F25B-07D1-4EDD-A230-9029ECBEBF04}.Debug|x64.Build.0 = Debug|x64
+		{35E7F25B-07D1-4EDD-A230-9029ECBEBF04}.Debug|x86.ActiveCfg = Debug|Win32
+		{35E7F25B-07D1-4EDD-A230-9029ECBEBF04}.Debug|x86.Build.0 = Debug|Win32
+		{35E7F25B-07D1-4EDD-A230-9029ECBEBF04}.Release|x64.ActiveCfg = Release|x64
+		{35E7F25B-07D1-4EDD-A230-9029ECBEBF04}.Release|x64.Build.0 = Release|x64
+		{35E7F25B-07D1-4EDD-A230-9029ECBEBF04}.Release|x86.ActiveCfg = Release|Win32
+		{35E7F25B-07D1-4EDD-A230-9029ECBEBF04}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8E00FFF7-9EDD-4417-8C2C-2716D1C398D1}
+	EndGlobalSection
+EndGlobal
