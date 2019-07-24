@@ -10,7 +10,7 @@ int partition(int *a, int left, int right)
 	int i = left - 1;
 	for (int j = left; j <= right - 1; j++)
 	{ 
-		if (a[j] < key)
+		if (a[j] > key)
 		{
 			i++;
 			int temp = a[i];
@@ -18,7 +18,7 @@ int partition(int *a, int left, int right)
 			a[j] = temp;
 			flag = false;
 		}
-		else if (a[j] > key)
+		else if (a[j] < key)
 			flag = false;
 		else;
 	}
@@ -48,10 +48,10 @@ void print_array(int *a, int n)
 }
 int main()
 {
-	int a[8] = { 2,2,2,2,2,2,2,2 };
-	/*quicksort(a, 0, 7);
-	print_array(a, 8); */
-	cout << partition(a, 0, 7);
+	int a[8] = { 1,2,3,4,5,6,7,8 };
+	quicksort(a, 0, 7);
+	print_array(a, 8); 
+	//cout << partition(a, 0, 7);
 	/*print_array(a, 3);*/
 	system("pause");
 
