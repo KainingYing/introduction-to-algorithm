@@ -3,7 +3,9 @@ using namespace std;
 
 int partition(int *a, int left, int right)
 {
-	/*非随机化版本，选择最后一个作为基准*/
+	/*非随机化版本，选择最后一个作为基准
+	增加一个判断用于当全部的元素都相同时那么返回中间值，关键在于增加判断是否所有值都相同*/  
+	bool flag = true;
 	int key = a[right];
 	int i = left - 1;
 	for (int j = left; j <= right - 1; j++)
@@ -14,14 +16,20 @@ int partition(int *a, int left, int right)
 			int temp = a[i];
 			a[i] = a[j];
 			a[j] = temp;
+			flag = false;
 		}
+		else if (a[j] > key)
+			flag = false;
+		else;
 	}
 	int temp = a[right];
 	a[right] = a[i + 1];
 	a[i + 1] = temp;
-	return i + 1;
+	if (flag == true)
+		return (left + right) / 2;
+	else
+		return i + 1;
 }
-
 void quicksort(int *a, int left, int right)
 {
 	if (left < right)
@@ -40,11 +48,11 @@ void print_array(int *a, int n)
 }
 int main()
 {
-	int a[8] = { 2,8,7,1,3,5,6,4 };
-	quicksort(a, 0, 7);
-	print_array(a, 8); 
-	//cout << partition(a, 0, 2);
-	print_array(a, 3);
+	int a[8] = { 2,2,2,2,2,2,2,2 };
+	/*quicksort(a, 0, 7);
+	print_array(a, 8); */
+	cout << partition(a, 0, 7);
+	/*print_array(a, 3);*/
 	system("pause");
 
 
