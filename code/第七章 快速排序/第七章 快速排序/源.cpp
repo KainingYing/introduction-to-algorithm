@@ -2,8 +2,8 @@
 #include <ctime>
 using namespace std;
 
-int a[100000];
-int b[100000];
+int a[1000000];
+int b[1000000];
 void random_array(int *a, int n, int range)
 {
 	srand((unsigned)time(NULL));
@@ -69,18 +69,13 @@ void quicksort_random(int *a, int left, int right)
 		quicksort_random(a, mid + 1, right);
 	}
 }
-void insert_sort(int *A, int n)
+void insert_sort(int *A, int left,int right)
 {
 	/*
-	第一版本，就是简单实现了p10的伪代码
-	*/
-	/*
-	A是数组A，n为数组的长度
-	可以用sizeof()来求出数组的长度，内存空间
-	但是作为参数不能获得,传入的参数是一个地址，函数无法判断他的长度
+	用于辅助快速排序，要稍微进行修改，因为快速排序是对局部数组进行排序，所以引入left与right参数
 	*/
 	int key;
-	for (int i = 1; i < n; i++)
+	for (int i = left+1; i < right; i++)
 	{
 		int j = i - 1;
 		key = A[i];
@@ -92,6 +87,24 @@ void insert_sort(int *A, int n)
 		A[j + 1] = key;
 	}
 }
+void quicksort_limit(int *a, int left, int right,int k)
+{
+	/*k用来限制数组的最小长度*/
+	if ((right - left ) > k)
+	{
+		int mid = partition(a, left, right);
+		quicksort_limit(a, left, mid - 1,k);
+		quicksort_limit(a, mid + 1, right,k);
+	}
+	else
+	{
+		insert_sort(a, left, right);
+	}
+}
+//void quicksort_insertsort(int *a, int left,int right)
+//{
+//	
+//}
 void print_array(int *a, int n)
 {
 	for (int i = 0; i < n; i++)
@@ -101,24 +114,18 @@ void print_array(int *a, int n)
 int main()
 {
 	clock_t start, end;
-	int n = 1000;  
-	/*random_array(a, n, 10000000);*/
-	for (int i = 0; i < n; i++)
-	{
-		a[i] = i;
-		b[i] = i;
-	}
+	int n = 400000;  
+	random_array(a, n, 10000000);
 	for (int i = 0; i < n; i++)
 		b[i] = a[i];
 	start = clock();
 	quicksort(a, 0, n - 1);
 	end = clock();
-	cout << "非随机化的算法:" << endl << double(end - start) / (CLOCKS_PER_SEC) << endl;
+	cout << "未限制:" << endl << double(end - start) / (CLOCKS_PER_SEC) << endl;
 	start = clock();
-	quicksort_random(b, 0, n - 1);
+	quicksort_limit(a, 0, n - 1, 550);
 	end = clock();
-	cout << "随机化的算法:" << endl << double(end - start) / (CLOCKS_PER_SEC) << endl;
-	///*print_array(a, 3);*/
+	cout << "限制了:" << endl << double(end - start) / (CLOCKS_PER_SEC) << endl;
 	system("pause");
 
 
