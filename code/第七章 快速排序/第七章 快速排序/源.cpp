@@ -1,6 +1,8 @@
 #include <iostream>
 #include <ctime>
 using namespace std;
+int a[10000];
+int b[10000];
 
 
 void random_array(int *a, int n, int range)
@@ -161,23 +163,22 @@ void print_array(int *a, int n)
 int main()
 {
 	clock_t start, end;
-	int n = 4;  
-	int a[4] = {4,2,1,3};
-	/*random_array(a, n, 100);*/
+	int n = 10000;  
+	random_array(a, n, 100);
 
-	/*for (int i = 0; i < n; i++)
-		b[i] = a[i];
+	for (int i = 0; i < n; i++)
+		b[i] = 2;
 	start = clock();
-	quicksort(a, 0, n - 1);
+	quicksort_random(a, 0, n - 1);
 	end = clock();
-	cout << "未限制:" << endl << double(end - start) / (CLOCKS_PER_SEC) << endl;
+	cout << "互异的:" << endl << double(end - start) / (CLOCKS_PER_SEC) << endl;
 	start = clock();
-	quicksort_limit(a, 0, n - 1, 550);
+	quicksort_random(b, 0, n - 1);
 	end = clock();
-	cout << "限制了:" << endl << double(end - start) / (CLOCKS_PER_SEC) << endl;*/
-	print_array(a, n);
+	cout << "全部相同:" << endl << double(end - start) / (CLOCKS_PER_SEC) << endl;
+	/*print_array(a, n);
 	quicksort_hoare(a, 0, n - 1); 
-	print_array(a, n);
+	print_array(a, n);*/
 	/*cout << hoare_partition(a, 0, n - 1);*/
 	system("pause");
 	return 0;
