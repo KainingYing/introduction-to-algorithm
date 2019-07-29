@@ -55,6 +55,20 @@ void delete_node(list_t *list, int key)
 			node = node->next;
 	}
 }
+void reverse(list_t *list)//·´×ªÁ´±í
+{
+	node_t *prev = &(list->nil);
+	node_t *node = list->nil.next;
+	node_t *next;
+	while (node != &(list->nil))
+	{
+		next = node->next;
+		node->next = prev;
+		prev = node;
+		node = next;
+	}
+	list->nil.next = prev;
+}
 int main()
 {
 
