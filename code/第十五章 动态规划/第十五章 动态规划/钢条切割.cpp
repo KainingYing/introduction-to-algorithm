@@ -64,9 +64,35 @@ int extended_bottom_up_rod(int *p, int n,int *r,int *s)
 	}
 	return r[n];
 }
+int cost_cut(int *p, int n, int *r, int *s,int c)
+{
+	r[0] = 0;
+	for (int i = 1; i <= n; i++)
+	{
+		int q = -1;
+		for (int j = 1; j <= i; j++)
+		{
+			if (j == i)
+			{
+				q = (q < p[i] ? p[i] : q);
+				s[i] = j;
+			}
+			else
+			{
+				if (q < r[i - j] + p[j]-c)
+				{
+					q = r[i - j] + p[j]-c;
+					s[i] = j;
+				}
+			}
+		}
+		r[i] = q;
+	}
+	return r[n];
+}
 void print_cut_rod_solution(int *p, int n,int *r,int *s)
 {
-	extended_bottom_up_rod(p, n, r, s);
+	cost_cut(p, n, r, s,0);
 	while (n > 0)
 	{
 		cout << s[n] << ' ';
@@ -78,7 +104,7 @@ int main()
 	int p[11] = { 0,1,5,8,9,10,17,17,20,24,30 };
 	int *r = new int[100];
 	int *s = new int[100];
-	print_cut_rod_solution(p, 7, r, s);
+	print_cut_rod_solution(p, 10, r, s);
 
 
 	system("pause");
