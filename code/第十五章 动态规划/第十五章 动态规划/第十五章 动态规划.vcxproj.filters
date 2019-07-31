@@ -18,5 +18,8 @@
     <ClCompile Include="钢条切割.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="矩阵链乘法.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
