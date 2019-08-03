@@ -60,10 +60,26 @@ void print_LCS(int **b,int *x,int i,int j)
 	else
 		print_LCS(b, x, i, j - 1);
 }
+void print_LCS_version2(int **c, int *x, int i, int j)
+{
+	//不用表b，直接用表c就可以完成最优解的构造
+	//构造出来的答案与版本一有区别
+	if (i == 0 || j == 0)
+		return;
+	else if (c[i][j] == c[i - 1][j - 1] + 1)//第一种情况
+	{
+		print_LCS_version2(c, x, i - 1, j - 1);
+		cout << x[i - 1] << ' ';
+	}
+	else if (c[i][j] == c[i - 1][j])
+		print_LCS_version2(c, x, i - 1, j);
+	else
+		print_LCS_version2(c, x, i, j - 1);
+}
 int main()
 {
-	int x[3] = { 1,1,5 };
-	int y[3] = {1,1,4};
+	int x[8] = { 1,0,0,1,0,1,0,1 };
+	int y[9] = {0,1,0,1,1,0,1,1,0};
 	int **b = new int*[10];
 	for (int i = 0; i < 10; i++)
 		b[i] = new int[10];
@@ -71,8 +87,10 @@ int main()
 	for (int i = 0; i < 10; i++)
 		c[i] = new int[10];
 
-	LCS_length(3, 3, x, y, c, b);
+	LCS_length(8, 9, x, y, c, b);
 	print_LCS(b, x, 3, 3);
+	cout << endl;
+	print_LCS_version2(c, x, 3, 3);
 	delete[]b;
 	delete[]c;
 
