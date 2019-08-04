@@ -116,6 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="LCScpp.cpp" />
+    <ClCompile Include="最优二叉搜索树.cpp" />
     <ClCompile Include="矩阵链乘法.cpp" />
     <ClCompile Include="钢条切割.cpp" />
   </ItemGroup>
